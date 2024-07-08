@@ -11,15 +11,15 @@ if os.path.isfile(data_file):
 else:
     data = pd.DataFrame(columns=["会社名", "氏名", "日付", "商品名", "ISBN or 商品コード", "営業先", "対象", "営業トーク", "反応", "備考"])
 
-def main():
-    global data  # この行を追加
-    st.title("外商販売集計アプリ ver.1.5")  # アプリケーション名を変更
+def app():  # この関数名を`main`から`app`に変更
+    global data
+    st.title("外商販売集計アプリ ver.1.5")
 
-    menu = ["アンケートの集計", "集計状況一覧"]
+    menu = ["集計情報登録", "集計状況一覧"]
     choice = st.sidebar.selectbox("メニュー", menu)
 
-    if choice == "アンケートの集計":
-        st.subheader("アンケートの集計")
+    if choice == "集計情報登録":
+        st.subheader("集計情報登録")
         company = st.text_input("会社名")
         name = st.text_input("氏名")
         date = st.date_input("日付")
@@ -38,7 +38,7 @@ def main():
                     data = pd.concat([data, new_data], ignore_index=True)
                     data.to_csv(data_file, index=False)
                     st.success("アンケートを集計しました。")
-                    print("アンケートの集計に成功しました。")
+                    print("集計情報登録に成功しました。")
                 except Exception as e:
                     st.error(f"エラーが発生しました：{e}")
                     print(f"エラーが発生しました：{e}")
@@ -61,9 +61,5 @@ def main():
 
         st.write(filtered_data)
 
-if __name__ == "__main__":
-    main()
-
-# 実行するときはターミナルに「streamlit run code.app.gaisyo_questionnaire.py」を入力する
-
-
+    if st.button('戻る'):
+        st.experimental_rerun()
