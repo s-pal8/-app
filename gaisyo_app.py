@@ -31,7 +31,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-
-
-
 # 実行するときはターミナルに「streamlit run gaisyo_app.py」を入力する
