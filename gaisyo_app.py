@@ -15,7 +15,7 @@ def get_session_state(**kwargs):
 
 # メインアプリ
 def main():
-    st.title('外商販促集計アプリ')
+    st.title('外商販促集計アプリ ver.1.5')
     st.subheader("メニュー")
     if st.button("集計情報登録"):
         gaisyo_registration.app()
