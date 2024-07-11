@@ -5,15 +5,8 @@ import os
 # データを保存するためのCSVファイルのパス
 data_file = "data.csv"
 
-# ファイルが存在する場合は読み込み、存在しない場合は新たに作成
-if os.path.isfile(data_file):
-    data = pd.read_csv(data_file)
-else:
-    data = pd.DataFrame(columns=["会社名", "氏名", "日付", "商品名", "ISBN or 商品コード", "営業先", "対象", "営業トーク", "反応", "備考"])
-
 def app():  # この関数名を`main`から`app`に変更
-    global data
-    st.title("外商販促集計アプリ ver.1.5")
+    st.title("外商販促集計アプリ ver.1.8")
     st.subheader("集計情報登録")
 
     # フォームの作成
@@ -33,9 +26,17 @@ def app():  # この関数名を`main`から`app`に変更
         submitted = st.form_submit_button("送信")
 
     if submitted:
+        # ファイルが存在する場合は読み込み、存在しない場合は新たに作成
+        if os.path.isfile(data_file):
+            data = pd.read_csv(data_file)
+            print(data)  # ここでデータを出力
+        else:
+            data = pd.DataFrame(columns=["会社名", "氏名", "日付", "商品名", "ISBN or 商品コード", "営業先", "対象", "営業トーク", "反応", "備考"])
+
         if company and name and date and product_name and isbn and sales_destination and target and sales_talk and reaction:
             try:
                 new_data = pd.DataFrame({"会社名": [company], "氏名": [name], "日付": [date], "商品名": [product_name], "ISBN or 商品コード": [isbn], "営業先": [sales_destination], "対象": [target], "営業トーク": [sales_talk], "反応": [reaction], "備考": [remarks]})
+                print(new_data)  # ここで新しいデータを出力
                 data = pd.concat([data, new_data], ignore_index=True)
                 data.to_csv(data_file, index=False)
                 st.success("アンケートを集計しました。登録が完了しました。")
