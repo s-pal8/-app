@@ -1,3 +1,5 @@
+# 2024.07.10時点で不要なモジュール
+
 import streamlit as st
 import pandas as pd
 import os

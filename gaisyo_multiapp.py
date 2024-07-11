@@ -1,4 +1,6 @@
-import streamlit as st  # この行を追加
+# 2024.07.10時点で不要なモジュール
+
+import streamlit as st  
 
 """複数のアプリケーションを管理するためのユーティリティ"""
 
