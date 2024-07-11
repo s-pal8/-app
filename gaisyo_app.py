@@ -15,11 +15,7 @@ def get_session_state(**kwargs):
 
 # メインアプリ
 def main():
-<<<<<<< HEAD
-    st.title('外商販促集計アプリ ver.1.5')
-=======
     st.title('外商販促集計アプリver.1.0')
->>>>>>> future/tourku
     st.subheader("メニュー")
     if st.button("集計情報登録"):
         gaisyo_registration.app()
